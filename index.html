@@ -14,7 +14,6 @@
 	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Dancing+Script:wght@400..700&family=Inconsolata:wght@200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Roboto+Slab:wght@100..900&family=Smooch+Sans:wght@100..900&family=VT323&display=swap" rel="stylesheet">
 
 	<style>
-	body, html { height: 100vh !important; }
 	.content { width: 100%; height: 100%; border: 1px solid var(--itemBg); }
 	.content h1, .content h2 { width: 90%; }
 	.content h1 { color: var(--blue) !important; margin-bottom: 1rem; }
@@ -26,11 +25,11 @@
 	.items > div { width: 13rem; height: 14rem; background: var(--itemBg); }
 	.items > div > gicon { display: block; margin: 2rem 0px 2.5rem 0px; width: 100%; height: 5rem; font-size: 6rem; color: var(--blue); }
 	.gallery { overflow: scroll; }
-	.picture > p { width: 90%; position: absolute; left: 5%; bottom: 3dvh; padding: 1.5rem; background: var(--windowFg); color: var(--fontColorX); border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; }
+	.picture > p { width: 90%; position: absolute; left: 5%; bottom: 1.5rem; padding: 1.5rem; background: var(--windowFg); color: var(--fontColorX); border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; }
 	a, c { color: var(--green); }
 	c { font-weight: 700; }
 	.slideN { animation: none; }
-	#home > gicon { display: none; }
+	#home > gicon:nth-child(3) { display: none; }
 	</style>
 
 	<script>{ "use strict";
@@ -124,7 +123,8 @@
 							id: v.id,
 							className: 'content center',
 							innerHTML: `<h1>${i}</h1><h2>${v.intro || intro_default}</h2>` +
-							`<gicon class='f abs ltop pt nosel' onclick="hide(this.root()); show(1, '${data.id}');">arrow_back</gicon>`
+							`<gicon class='f abs ltop pt nosel' onclick="hide(this.root()); show(1, '${data.id}');">arrow_back</gicon>` +
+							`<gicon class='f abs rtop pt nosel' onclick="fullscreen()">fullscreen</gicon>`
 						});
 						hide(em);
 						let items = create(0, {className: 'items center'}, em);
