@@ -56,7 +56,7 @@
 			icon: 'article_shortcut',
 			intro: 'Выберите нужную вам CMS из списка ниже',
 			root: 'home',
-			tilda: {
+			Tilda: {
 				id: 'tilda',
 				icon: 'web',
 				intro: def.articles,
@@ -81,7 +81,7 @@
 					]
 				}
 			},
-			joomla: {
+			['Joomla!']: {
 				id: 'joomla',
 				icon: 'web',
 				intro: def.articles+'.<br>(В старых версиях Joomla всё работает аналогично, просто пощёлкайте по меню)',
@@ -150,7 +150,7 @@
 					]
 				}
 			},
-			bitrix: {
+			Bitrix: {
 				id: 'bitrix',
 				icon: 'web',
 				intro: def.articles,
@@ -171,6 +171,31 @@
 					root: 'bitrix',
 					data: [0,
 						[]
+					]
+				}
+			},
+			WordPress: {
+				id: 'wordpress',
+				icon: 'web',
+				intro: def.articles,
+				root: 'articles',
+				['Статьи блога']: {
+					id: 'blog-wordpress',
+					icon: 'full_coverage',
+					root: 'wordpress',
+					path: 'cms/wordpress/blog',
+					data: [0,
+						[],
+						//['.png', '<c></c>'],
+					]
+				},
+				['Посадочные статьи']: {
+					id: 'articles-wordpress',
+					icon: 'article',
+					root: 'wordpress',
+					path: 'cms/wordpress/article',
+					data: [0,
+						[],
 					]
 				}
 			},
