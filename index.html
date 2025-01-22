@@ -19,10 +19,10 @@
 	.content h1 { color: var(--blue) !important; margin-bottom: 1rem; }
 	.content h2 { margin-top: 0px; }
 	.content > gicon { padding: 1rem; font-size: 3rem; }
-	.items { padding: 1rem; gap: 1rem; min-width: 90vmin; min-height: 40vh; background: var(--windowFg);  }
+	.items { padding: 2rem 1rem; gap: 1rem; min-width: 60vmin; max-width: calc(75vmin + 20vw); max-height: 35rem; background: var(--windowFg);  }
 	.items, .items > div { margin: auto; border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; transition: 0.3s; }
-	.items, .items > div:hover { transform: translateY(-1rem); }
-	.items > div { width: 13rem; height: 14rem; background: var(--itemBg); color: var(--fontColorX); }
+	.items, .items > div:hover { transform: translateY(-0.75rem); }
+	.items > div { width: 13rem; height: 13rem; background: var(--itemBg); color: var(--fontColorX); }
 	.items > div > gicon { display: block; margin: 2rem 0px 2.5rem 0px; width: 100%; height: 5rem; font-size: 6rem; color: var(--blue); }
 	.gallery { overflow: scroll; }
 	.picture > p { width: 90%; position: absolute; left: 5%; bottom: 1.5rem; padding: 1.5rem; background: var(--windowFg); color: var(--fontColorX); border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; }
@@ -53,6 +53,29 @@
 			icon: 'article_shortcut',
 			intro: 'Выберите нужную вам CMS из списка ниже.',
 			root: 'home',
+			tilda: {
+				id: 'tilda',
+				icon: 'web',
+				root: 'articles',
+				['Статьи блога']: {
+					id: 'blog-tilda',
+					icon: 'full_coverage',
+					path: 'cms/tilda/blog',
+					root: 'tilda',
+					data: [0,
+						[]
+					]
+				},
+				['Посадочные статьи']: {
+					id: 'articles-bitrix',
+					icon: 'article',
+					path: 'cms/bitrix/article',
+					root: 'bitrix',
+					data: [0,
+						[]
+					]
+				}
+			},
 			joomla: {
 				id: 'joomla',
 				icon: 'web',
@@ -146,7 +169,7 @@
 						[]
 					]
 				}
-			}
+			},
 		},
 		['Исправление мета-данных']: {
 			id: 'metadata',
