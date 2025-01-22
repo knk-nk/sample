@@ -133,14 +133,18 @@
 					icon: 'full_coverage',
 					path: 'cms/bitrix/blog',
 					root: 'bitrix',
-					data: []
+					data: [0,
+						[]
+					]
 				},
 				['Посадочные статьи']: {
 					id: 'articles-bitrix',
 					icon: 'article',
 					path: 'cms/bitrix/article',
 					root: 'bitrix',
-					data: []
+					data: [0,
+						[]
+					]
 				}
 			}
 		},
@@ -188,7 +192,7 @@
 					loop(v.len(), (n)=>{
 						if (type(v[n]) === 'array') {
 							let img = v[n][0] || '';
-							let text = v[n][1];
+							let text = v[n][1] || '';
 							let _this = create(0, {
 								id: `${emid}-${n}`,
 								className: 'picture w h slided',
