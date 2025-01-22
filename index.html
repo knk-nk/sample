@@ -17,7 +17,7 @@
 	.content { animation: slideFromR 0.5s; width: 100%; height: 100%; }
 	.content h1, .content h2 { width: 90%; }
 	.content h1 { color: var(--blue) !important; margin-bottom: 1rem; }
-	.content h2 { margin-top: 0px; }
+	.content h2 { margin-top: 0px; font-size: 1.5rem; }
 	.content > gicon { padding: 1rem; font-size: 3rem; }
 	.items { padding: 2rem 1rem; gap: 1rem; min-width: 60vmin; max-width: calc(75vmin + 20vw); max-height: 35rem; background: var(--windowFg);  }
 	.items, .items > div { margin: auto; border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; transition: 0.3s; }
@@ -63,16 +63,17 @@
 					path: 'cms/tilda/blog',
 					root: 'tilda',
 					data: [0,
-						[]
+						[],
+						//['.png', '<c></c>'],
 					]
 				},
 				['Посадочные статьи']: {
-					id: 'articles-bitrix',
+					id: 'articles-tilda',
 					icon: 'article',
-					path: 'cms/bitrix/article',
-					root: 'bitrix',
+					path: 'cms/tilda/article',
+					root: 'tilda',
 					data: [0,
-						[]
+						[],
 					]
 				}
 			},
@@ -116,7 +117,6 @@
 						['19.png', 'В поле <c>Метатег Description</c> вставьте текст <c>Description</c> из документа статьи'+def.skip],
 						['20.png', 'Нажмите <c>Сохранить и закрыть</c>'],
 						['21.png', 'Готово. Теперь вы научились создавать статьи для блога на <c>Joomla!</c>'+def.skip],
-						//['.png', '<c></c>'],
 					]
 				},
 				['Посадочные статьи']: {
