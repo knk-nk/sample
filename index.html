@@ -51,6 +51,7 @@
 	const def = {
 		greeting: 'Добро пожаловать в интерактивный гайд по работе с различными CMS',
 		intro: 'Выберите нужный вам раздел из списка ниже',
+		intro_cms: 'Выберите нужную вам CMS из списка ниже',
 		skip: ' <i>(нажмите чтобы пролистать)</i>',
 		articles: 'Чтобы сгенерировать HTML код из текста документа для вставки в статью, перейдите по '+
 			'<a href="https://reineimi.github.io/html-article-editor/" target="_blank">данной ссылке</a>'+
@@ -69,7 +70,7 @@
 		['Выкладывание статей']: {
 			id: 'articles',
 			icon: 'article_shortcut',
-			intro: 'Выберите нужную вам CMS из списка ниже',
+			intro: def.intro_cms,
 			root: 'home',
 			Tilda: {
 				id: 'tilda',
@@ -240,10 +241,32 @@
 				}
 			},
 		},
-		['Исправление мета-данных']: {
+		['Настройка мета-данных']: {
 			id: 'metadata',
 			icon: 'all_match',
+			intro: def.intro_cms,
 			root: 'home',
+			['Joomla!']: {
+				id: 'joomla-meta',
+				icon: 'web',
+				root: 'articles',
+				['Title & Description']: {
+					id: 'td-joomla',
+					icon: 'list_alt_check',
+					path: 'cms/joomla/td',
+					root: 'joomla-meta',
+					data: [0,
+						['0.png', 'Нажмите на раздел <c>Меню</c> в левой части экрана'],
+						['1.png', 'Нажмите на подраздел <c>Main Menu</c>'],
+						['2.png', 'Выберите нужную вам страницу (здесь: <c>Контакты</c>)'],
+						['3.png', 'Нажмите на вкладку <c>Страница</c>'],
+						['4.png', 'В поле <c>Заголовок страницы в браузере</c> вставьте нужный <c>Title</c>'+def.skip],
+						['5.png', 'Перейдите во вкладку <c>Метаданные</c>'],
+						['6.png', 'В поле <c>Метатег Description</c> вставьте нужный <c>Description</c>'+def.skip],
+						['7.png', 'Готово. Нажмите <c>Сохранить и закрыть</c> чтобы закончить'],
+					]
+				},
+			}
 		},
 		['Работа с РП']: {
 			id: 'sheets',
