@@ -66,7 +66,6 @@
 			'<br><b>Не забудьте перепроверить статью после публикации</b>'
 		]
 	};
-	def.intro_meta = def.intro+'<hr>'+def.intro_meta;
 
 	const content = { [def.greeting]: {
 		id: 'home',
@@ -271,12 +270,11 @@
 		['Настройка мета-данных']: {
 			id: 'metadata',
 			icon: 'all_match',
-			intro: def.intro_cms,
+			intro: def.intro_cms +'<hr>'+ def.intro_meta,
 			root: 'home',
 			['Joomla!']: {
 				id: 'joomla-meta',
 				icon: 'web',
-				intro: def.intro_meta,
 				root: 'articles',
 				['Title & Description']: {
 					id: 'joomla-td',
@@ -298,7 +296,6 @@
 			['Bitrix']: {
 				id: 'bitrix-meta',
 				icon: 'web',
-				intro: def.intro_meta,
 				root: 'articles',
 				['Title & Description']: {
 					id: 'bitrix-td',
