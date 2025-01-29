@@ -17,8 +17,8 @@
 	body { height: var(--dvh) !important; }
 	.content { animation: slideFromR 0.5s; width: 100%; height: 100%; overflow: scroll; }
 	.content h1, .content h2 { width: 90%; }
-	.content h1 { color: var(--fontColorX) !important; margin-bottom: 1rem; }
-	.content h2 { margin-top: 0px; font-size: 1.5rem; }
+	.content h1 { color: var(--fontColorX) !important; margin-bottom: 1rem; padding-top: 1rem; }
+	.content h2 { margin-top: 0px; font-size: 1.5rem; padding-bottom: 3rem; }
 	.content h2 > hr { border: 0px; height: 1rem; }
 	.content > gicon { padding: 1rem; font-size: 3rem; }
 	.content > gicon:hover { color: var(--fontColorX); }
@@ -31,8 +31,8 @@
 	.fulltext li { padding-bottom: 0.75rem; }
 	.fulltext li::marker { color: var(--pink); font-weight: 800; }
 	.fulltext ol > br, .fulltext ul > br { display: none; }
-	.items { padding: 2rem 1rem; gap: 1rem; min-width: 60vmin; max-width: calc(75vmin + 20vw); max-height: 35rem; background: var(--windowFg);  }
-	.items, .items > div { margin: auto; border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; transition: 0.3s; }
+	.items { margin: auto auto 1rem auto !important; padding: 1rem; gap: 1rem 1rem; min-width: 12rem; max-width: calc(75vw + 20vmin); max-height: 30rem; background: var(--windowFg);  }
+	.items, .items > div { margin: 0px; border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; transition: 0.3s; }
 	.items, .items > div:hover { transform: translateY(-0.75rem); }
 	.items > div { width: 12rem; height: 12rem; background: var(--itemBg); color: var(--fontColorX); font-weight: 500; }
 	.items > div > gicon { display: block; margin: 1rem 0px 2.5rem 0px; width: 100%; height: 5rem; font-size: 6rem; color: var(--blue); }
@@ -40,7 +40,7 @@
 	.picture > p { width: 90%; position: absolute; left: 5%; bottom: 1.5rem; padding: 1.5rem; background: var(--windowFg); color: var(--fontColorX); border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; }
 	a { color: var(--purple); }
 	c { color: var(--green); font-weight: 700; }
-	i { color: var(--brown); }
+	i { color: var(--brown); font-size: 0.8em; }
 	b { color: var(--pink); }
 	.gallery .slideN { animation: none; }
 	#home > gicon:nth-child(3) { display: none; }
@@ -53,6 +53,7 @@
 		greeting: 'Добро пожаловать в интерактивный гайд по работе с различными CMS',
 		intro: 'Выберите нужный вам раздел из списка ниже',
 		intro_cms: 'Выберите нужную вам CMS из списка ниже',
+		intro_meta: 'Дополнительную информацию ищите в разделе <c>Программирование</c>',
 		skip: ' <i>(нажмите чтобы пролистать)</i>',
 		articles: 'Чтобы сгенерировать HTML код из текста документа для вставки в статью, перейдите по '+
 			'<a href="https://reineimi.github.io/html-article-editor/" target="_blank">данной ссылке</a>'+
@@ -65,9 +66,12 @@
 			'<br><b>Не забудьте перепроверить статью после публикации</b>'
 		]
 	};
+	def.intro_meta = def.intro+'<hr>'+def.intro_meta;
+
 	const content = { [def.greeting]: {
 		id: 'home',
-		intro: def.intro+'<hr><i>(В процессе разработки)</i>',
+		intro: def.intro+'<hr><i>(Списки могут быть листабельными, особенно на мобильных устройствах)</i>'+
+			'<hr><i>(В процессе разработки)</i>',
 		['Выкладывание статей']: {
 			id: 'articles',
 			icon: 'article_shortcut',
@@ -219,7 +223,7 @@
 			WordPress: {
 				id: 'wordpress',
 				icon: 'web',
-				intro: def.articles+'<hr>В этой CMS есть несколько решений, здесь всё зависит от подключенных плагинов',
+				intro: def.articles+'<hr><i>В этой CMS есть несколько решений, здесь всё зависит от подключенных плагинов</i>',
 				root: 'articles',
 				['Статьи блога']: {
 					id: 'blog-wordpress',
@@ -272,9 +276,10 @@
 			['Joomla!']: {
 				id: 'joomla-meta',
 				icon: 'web',
+				intro: def.intro_meta,
 				root: 'articles',
 				['Title & Description']: {
-					id: 'td-joomla',
+					id: 'joomla-td',
 					icon: 'list_alt_check',
 					path: 'cms/joomla/td',
 					root: 'joomla-meta',
@@ -289,7 +294,33 @@
 						['7.png', 'Готово. <b>Если в списке меню нет страницы, измените её через</b> <c>Материалы</c>. Нажмите <c>Сохранить и закрыть</c> чтобы закончить'],
 					]
 				},
-			}
+			},
+			['Bitrix']: {
+				id: 'bitrix-meta',
+				icon: 'web',
+				intro: def.intro_meta,
+				root: 'articles',
+				['Title & Description']: {
+					id: 'bitrix-td',
+					icon: 'list_alt_check',
+					path: 'cms/bitrix/td',
+					root: 'bitrix-meta',
+					data: [0,
+						['0.png', '<c>Дважды щелкните</c> на панель сверху'+def.skip],
+						['1.png', 'Нажмите <c>Изменить страницу</c>'],
+						['2.png', 'Выберите опцию <c>В режиме PHP-кода</c>'],
+						['3.png', 'Здесь нам нужно изменить выделенные значения внутри ковычек, идущих после запятой'+def.skip],
+						['4.png', 'Вставьте соответствующиее данные и нажмите <c>Сохранить</c>'],
+						['5.png', 'Готово. Это одно из нескольких решений'+def.skip]
+					]
+				},
+			},
+		},
+		['Программирование']: {
+			id: 'code',
+			icon: 'code',
+			intro: 0,
+			root: 'home',
 		},
 		['Работа с РП']: {
 			id: 'sheets',
@@ -373,7 +404,13 @@
 				В таком случае мы ставим <c>точку и пробел</c> между текстами.
 				Также, если первая часть слитого текста - словосочетание, то его можно обернуть в <c>< b ></c>.</li>
 				</ol>`
-			}
+			},
+			['...']: {
+				id: '...',
+				icon: 'more',
+				intro: '...',
+				text: `...`,
+			},
 		}
 	}}
 
