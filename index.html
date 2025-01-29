@@ -31,7 +31,7 @@
 	.fulltext li { padding-bottom: 0.75rem; }
 	.fulltext li::marker { color: var(--pink); font-weight: 800; }
 	.fulltext ol > br, .fulltext ul > br { display: none; }
-	.items { margin: auto auto 1rem auto !important; padding: 1rem; gap: 1rem 1rem; min-width: 12rem; max-width: calc(75vw + 20vmin); max-height: 30rem; background: var(--windowFg);  }
+	.items { margin: auto auto 1rem auto !important; padding: 1rem; gap: 1rem 1rem; min-width: 12rem; max-width: calc(75vw + 20vmin); max-height: 27rem; background: var(--windowFg);  }
 	.items, .items > div { margin: 0px; border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; transition: 0.3s; }
 	.items, .items > div:hover { transform: translateY(-0.75rem); }
 	.items > div { width: 12rem; height: 12rem; background: var(--itemBg); color: var(--fontColorX); font-weight: 500; }
@@ -275,6 +275,7 @@
 			['Joomla!']: {
 				id: 'joomla-meta',
 				icon: 'web',
+				intro: def.intro+'<hr>В старых версиях Joomla! всё находится в анаголичных позициях',
 				root: 'articles',
 				['Title & Description']: {
 					id: 'joomla-td',
@@ -307,7 +308,7 @@
 						['1.png', 'Нажмите <c>Изменить страницу</c>'],
 						['2.png', 'Выберите опцию <c>В режиме PHP-кода</c>'],
 						['3.png', 'Здесь нам нужно изменить выделенные значения внутри ковычек, идущих после запятой'+def.skip],
-						['4.png', 'Вставьте соответствующиее данные и нажмите <c>Сохранить</c>'],
+						['4.png', 'Вставьте соответствующие данные и нажмите <c>Сохранить</c>'],
 						['5.png', 'Готово. Это одно из нескольких решений'+def.skip]
 					]
 				},
@@ -318,6 +319,22 @@
 			icon: 'code',
 			intro: 0,
 			root: 'home',
+			['Создание TKD маски']: {
+				id: 'code-tkd-mask',
+				icon: 'data_object',
+				intro: 'TKD маска - это повторяющийся текст, в который вставляется переменное '+
+					'значение, например:<br>"Товары от бренда <c>{BRAND}</c>"<hr>'+def.intro_cms,
+				root: 'home',
+				Bitrix: {
+					id: 'bitrix-tkd-mask',
+					icon: 'web',
+					root: 'code-tkd-mask',
+					path: 'cms/bitrix/tkd-mask',
+					data: [0,
+						[],
+					]
+				},
+			},
 		},
 		['Работа с РП']: {
 			id: 'sheets',
