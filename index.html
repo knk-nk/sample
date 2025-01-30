@@ -296,7 +296,7 @@
 						['4.png', 'В поле <c>Заголовок страницы в браузере</c> вставьте нужный <c>Title</c>'+def.skip],
 						['5.png', 'Перейдите во вкладку <c>Метаданные</c>'],
 						['6.png', 'В поле <c>Метатег Description</c> вставьте нужный <c>Description</c>'+def.skip],
-						['7.png', 'Готово. <b>Если в списке меню нет страницы, измените её через</b> <c>Материалы</c>. Нажмите <c>Сохранить и закрыть</c> чтобы закончить'],
+						['7.png', 'Готово. <b>Если в списке меню нет страницы, измените её через Материалы</b>. Нажмите <c>Сохранить и закрыть</c> чтобы закончить'],
 					]
 				},
 			},
@@ -389,7 +389,7 @@
 				text: `<h>Стилизация и структуризация</h>
 				Статьи должны (более или менее) следовать данному CSS шаблону:
 <x class='code'>._article { margin: 2rem 0px; }
-._article * { margin-bottom: 1rem; margin-top: 0px; font-family: Arial; }
+._article * { margin-bottom: 1rem; margin-top: 0px; <c>font-family: Arial</c>; }
 ._article li { margin-bottom: 1rem; margin-left: 2.5rem; }
 ._article li  > p { padding: 0px; margin: 0px; }
 ._article ol, ._article ul { margin-bottom: 0.5rem !important; padding: 0px !important; }
@@ -399,7 +399,7 @@
 </x>
 				Отсюда, <c>_article</c> является классом контейнера, в котором лежит текст статьи. Например, для посадочных статей Тильды мы пишем:
 <x class='code'>< div class="t-container _article" >
-	(наша статья здесь)
+	<i>(наша статья здесь)</i>
 < /div >
 </x>
 				Значение <c>font-family</c> должно следовать основному шрифту на сайте.
