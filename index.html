@@ -68,7 +68,7 @@
 			'<br><b>Не забудьте перепроверить статью после публикации</b>'
 		],
 		tkd: {
-			intro: '<c>TKD</c> = <c>Title</c> (заголовок), <c>Keywords</c> (ключевые фразы), <c>Description</c> (описание) страницы.<br>',
+			intro: '<c>TKD</c> = <c>Title</c> (Заголовок), <c>Keywords</c> (Ключевые фразы), <c>Description</c> (Описание) страницы.<hr>',
 			mask: '<c>TKD маска</c> - повторяющийся текст, в который вставляется переменное значение, например: "Товары от бренда <c>{BRAND}</c>". '
 		},
 	};
@@ -276,12 +276,12 @@
 		['Настройка мета-данных']: {
 			id: 'metadata',
 			icon: 'all_match',
-			intro: `${def.tkd.intro}<hr>${def.intro_meta}<hr>${def.intro_cms}`,
+			intro: def.intro_meta+'<hr>'+def.intro_cms,
 			root: 'home',
 			['Joomla!']: {
 				id: 'joomla-meta',
 				icon: 'web',
-				intro: def.intro+'<hr>В старых версиях Joomla! всё находится в анаголичных позициях',
+				intro: def.tkd.intro+'В старых версиях Joomla! всё находится в анаголичных позициях<hr>'+def.intro,
 				root: 'articles',
 				['TKD']: {
 					id: 'joomla-tkd',
@@ -303,6 +303,7 @@
 			['Bitrix']: {
 				id: 'bitrix-meta',
 				icon: 'web',
+				intro: def.tkd.intro+def.intro,
 				root: 'articles',
 				['TKD']: {
 					id: 'bitrix-tkd',
