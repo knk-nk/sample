@@ -68,6 +68,7 @@
 			'<br><b>Не забудьте перепроверить статью после публикации</b>'
 		],
 		tkd: {
+			intro: '<c>TKD</c> = <c>Title</c> (заголовок), <c>Keywords</c> (ключевые фразы), <c>Description</c> (описание) страницы.<br>',
 			mask: '<c>TKD маска</c> - повторяющийся текст, в который вставляется переменное значение, например: "Товары от бренда <c>{BRAND}</c>". '
 		},
 	};
@@ -275,17 +276,17 @@
 		['Настройка мета-данных']: {
 			id: 'metadata',
 			icon: 'all_match',
-			intro: def.intro_cms +'<hr>'+ def.intro_meta,
+			intro: `${def.tkd.intro}<hr>${def.intro_meta}<hr>${def.intro_cms}`,
 			root: 'home',
 			['Joomla!']: {
 				id: 'joomla-meta',
 				icon: 'web',
 				intro: def.intro+'<hr>В старых версиях Joomla! всё находится в анаголичных позициях',
 				root: 'articles',
-				['Title & Description']: {
-					id: 'joomla-td',
+				['TKD']: {
+					id: 'joomla-tkd',
 					icon: 'list_alt_check',
-					path: 'cms/joomla/td',
+					path: 'cms/joomla/tkd',
 					root: 'joomla-meta',
 					data: [0,
 						['0.png', 'Нажмите на раздел <c>Меню</c> в левой части экрана'],
@@ -303,8 +304,8 @@
 				id: 'bitrix-meta',
 				icon: 'web',
 				root: 'articles',
-				['Title & Description']: {
-					id: 'bitrix-td',
+				['TKD']: {
+					id: 'bitrix-tkd',
 					icon: 'list_alt_check',
 					path: 'cms/bitrix/tkd',
 					root: 'bitrix-meta',
