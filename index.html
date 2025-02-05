@@ -27,8 +27,8 @@
 	.fulltext h2 { width: 90%; font-size: 1.25rem; margin: 0px auto; }
 	.fulltext h { font-family: inherit; font-size: 1.7rem; color: var(--blue); padding: 0px 0px 0.5rem 0px; display: inline-block; }
 	.fulltext div { width: 90%; height: 80%; padding: 1rem 1.5rem; overflow: scroll; white-space: wrap; font-size: 1.2rem; line-height: 1.3; color: var(--fontColorX); border-radius: var(--corners); background: var(--windowFg); box-shadow: 0 0 2.5rem #0003; }
-	.fulltext ol, .fulltext ul { padding: 0.75rem 0px 0px 3rem; }
-	.fulltext li { padding-bottom: 0.75rem; }
+	.fulltext ol, .fulltext ul { padding: 0px 0px 0px 3rem; }
+	.fulltext li { padding-top: 0.75rem; }
 	.fulltext li::marker { color: var(--pink); font-weight: 800; }
 	.fulltext ol > br, .fulltext ul > br { display: none; }
 	.items { margin: auto auto 1rem auto !important; padding: 1rem; gap: 1rem 1rem; min-width: 12rem; max-width: calc(75vw + 20vmin); max-height: 27rem; background: var(--windowFg);  }
@@ -389,7 +389,7 @@
 				intro: 'Структуризация посадочных текстов и статей для блога',
 				text: `<h>Стилизация и структуризация</h>
 				Статьи должны (более или менее) следовать данному CSS шаблону:
-<x class='code'>._article { margin-top: 2rem; margin-bottom: 2rem; }
+<x class='code'>._article { margin-top: 2rem; margin-bottom: 2rem; box-sizing: border-box; <c>padding: 1rem;</c> }
 ._article * { margin-bottom: 1rem; margin-top: 0px; <c>font-family: Arial</c>; }
 ._article li { margin-bottom: 1rem; margin-left: 2.5rem; }
 ._article li  > p { padding: 0px; margin: 0px; }
@@ -404,6 +404,7 @@
 < /div >
 </x>
 				Значение <c>font-family</c> должно следовать основному шрифту на сайте.
+				Выделенное значение <c>padding: 1rem;</c> является опциональным. Например, на Тильде лучше оставить его.
 
 				Текст для статей лучше вставлять в виде HTML кода, используя данный редактор:
 				https://reineimi.github.io/html-article-editor/. Он очищает код от лишних артефактов.
@@ -417,14 +418,23 @@
 				То есть, вместо <c>src="https:/..."</c> должен быть прописан путь на локальный файл: <c>src="/my/file.jpg"</c>.
 				Также, в изображениях обязательно должен присутствовать аттрибут <c>alt</c>. Его можно оставить и пустым.
 
+				Еще важно подметить, что изображения желательно компрессировать в один из следующих форматов:
+				<ol>
+				<li>PNG 8-bit depth;</li>
+				<li>JPG 80-90% quality.</li>
+				</ol>
+				То есть, желательно чтобы размер изображения не превышал 500 кб.
+
 				<h>Частые ошибки</h>
 				На что стоит обращать внимание при проверке статей в первую очередь:<ol>
-				<li><c>Иерархия заголовков</c> - Она не должна быть нарушена. После <c>H2</c> не должен идти еще один <c>H2</c>, или же <c>H4</c>.</li>
+				<li><c>Иерархия заголовков</c> - Она не должна быть нарушена. После <c>H2</c> не должен идти <c>H1</c> или <c>H4</c>.</li>
 				<li><c>Метаданные</c> - В статьях блога обычно пишут Title & Description, а также вставляют главное изображение и H1. Их в тексте быть не должно.</li>
 				<li><c>Заголовок вместо параграфа</c> - При написании статей иногда возникают такие ошибки, когда вместо <c>< p ></c> стоит, например, <c>< h2 ></c>. В статье это нужно исправить.</li>
 				<li><c>Сливание текста</c> - Из-за того, что мы избавились от <c>< br ></c> тегов, текст может сливаться (в основном внутри <c>< li ></c>).
 				В таком случае мы ставим <c>точку и пробел</c> между текстами.
 				Также, если первая часть слитого текста - словосочетание, то его можно обернуть в <c>< b ></c>.</li>
+				<li><c>Название страницы в посадочных</c> - Иногда первым H2 заголовком идет название страницы (например: "Главная").
+				В таком случае мы удаляем его и делаем H2 заголовком следующий заголовок.</li>
 				</ol>`
 			},
 			['...']: {
