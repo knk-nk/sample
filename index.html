@@ -32,6 +32,8 @@
 	.fulltext li { padding-top: 0.75rem; }
 	.fulltext li::marker { color: var(--pink); font-weight: 800; }
 	.fulltext ol > br, .fulltext ul > br { display: none; }
+	.fulltext img { display: block; max-width: 100%; max-height: 25rem; margin-top: 1rem; cursor: pointer; transition: 0.3s; }
+	.fulltext img.fillx { max-height: unset; }
 	.items { margin: auto auto 1rem auto !important; padding: 1rem; gap: 1rem 1rem; min-width: 12rem; max-width: calc(75vw + 20vmin); max-height: 27rem; background: var(--windowFg);  }
 	.items, .items > div { margin: 0px; border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; transition: 0.3s; }
 	.items, .items > div:hover { transform: translateY(-0.75rem); }
@@ -204,6 +206,27 @@
 						['18.png', 'Теперь вы знаете как добавлять посадочные статьи на <c>Joomla!</c>'+def.code[4]],
 					]
 				},
+				['Создание блога']: {
+					id: 'blog-create-joomla',
+					icon: 'contextual_token',
+					path: 'cms/joomla/blog-create',
+					root: 'joomla',
+					data: [0,
+						['0.png', 'Нажмите на раздел <c>Контент / Категории</c>'],
+						['1.png', 'Нажмите кнопку <c>Создать</c>'],
+						['2.png', 'Введите слово <c>Блог</c> в поле <i>Заголовок*</i> и нажмите <c>Сохранить и закрыть</c>'],
+						['3.png', 'Далее, перейдите в раздел <c>Меню / Main menu</c> (или, в данном случае, <c>Меню / Меню</c>)'],
+						['4.png', 'Нажмите кнопку <c>Создать</c>'],
+						['5.png', 'В поле <i>Тип пункта меню*</i> нажмите <c>Выбрать</c>'],
+						['6.png', 'Выберите вариант <c>Материалы / Блог категории</c>'],
+						['7.png', 'Далее, в поле <i>Категория*</i> нажмите <c>Выбрать</c>'],
+						['8.png', 'Выберите категорию <c>Блог</c>'],
+						['9.png', 'Напишите заголовок <c>Блог</c> и перейдите во вкладку <c>Категория</c>'],
+						['10.png', 'Скопируйте настройки ниже и перейдите во вкладку <c>Отображение</c>'],
+						['11.png', 'Снова скопируйте настройки ниже и нажмите <c>Сохранить и закрыть.</c><br>'+
+							'После этого посетите раздел: <c>Программирование / Joomla! / Шаблон блога</c>']
+					]
+				},
 			},
 			Bitrix: {
 				id: 'bitrix',
@@ -365,6 +388,40 @@
 			icon: 'code',
 			intro: def.intro_cms,
 			root: 'home',
+			['Любая CMS']: {
+				id: 'any-cms-code',
+				icon: 'apps',
+				intro: 0,
+				root: 'code',
+				['Cookies Popup']: {
+					id: 'cookies',
+					icon: 'cookie',
+					intro: 'Диалоговое окно соглашения с Cookies',
+					text: `
+					Простой код для вставки в <c>< head ></c>:
+<x class="code">< !-- Cookies Popup -- >
+< style >
+:root { --accentColor: <c>#c22</c>; }
+.__cookies::before { content: "Этот сайт использует файлы cookie для хранения данных. Продолжая использовать сайт, Вы даете согласие на работу с этими файлами."; }
+.__cookies  > button::before { content: "Принять"; }
+.__cookies  > * { margin: auto; }
+.__cookies { z-index: 99; display: flex; flex-wrap: wrap; position: fixed; bottom: 5vmin; left: 5vmin; padding: 1.5rem 2rem; width: 60vmin; background: #222; color: #bbb; border-radius: 1.5rem; box-shadow: 0 0 2rem #0007; text-shadow: 2px 2px 5px #000; }
+.__cookies  > button { background: var(--accentColor); color: #fff; margin-top: 1.5rem; padding: 0.5rem 3rem; border: none; border-radius: 0.5rem; cursor: pointer; box-shadow: 0.2rem 0.2rem 1rem #0007; box-sizing: border-box; transition: 0.2s; }
+.__cookies  > button:hover { filter: brightness(0.9); transform: scale(0.95); }
+< /style >
+< script async defer >
+window.addEventListener("load", ()= >{
+	if (!window.localStorage.getItem('cookies_accepted')) {
+		document.body.insertAdjacentHTML('beforeend',
+		"< div class='__cookies' onclick='window.localStorage.setItem(\"cookies_accepted\", 1); this.remove()' >< button >< /button >< /div >");
+	}
+});
+< /script >
+</x>
+					Отмеченный цвет в переменной <c>--accentColor</c> должен равняться основному цвету кнопок на сайте.
+					`
+				},
+			},
 			Bitrix: {
 				id: 'bitrix-code',
 				icon: 'web',
@@ -394,6 +451,36 @@
 					Класс <c>container</c> зависит от класса главного контейнера, который используется на вашем текущем сайте.
 					Суть контейнера в том, чтобы текст не растянулся на весь экран.`
 				},
+			},
+			['Joomla!']: {
+				id: 'joomla-code',
+				icon: 'web',
+				intro: 0,
+				root: 'code',
+				['Шаблон блога']: {
+					id: 'joomla-code-blog',
+					icon: 'contextual_token',
+					intro: 'Шаблон страницы блога на Joomla!',
+					text: `CSS код для стилизации страницы блога:
+<x class="code">.com-content-category-blog, .com-content-article { margin-top: calc(100px + 1.5rem); }
+.blog-items { display: flex; flex-wrap: wrap; justify-content: space-between; }
+.blog-item { width: calc(50% - 1rem); margin-bottom: 2rem; background: #fff; border-radius: 1rem; border: 0.1rem solid #ccc; box-shadow: 0 1rem 2rem #0005; box-sizing: border-box; padding: 1rem; transition: 0.3s; }
+@media screen and (max-width: 600px) {
+	.blog-item { width: 100%; }
+}
+.blog-item:hover { transform: translateY(-0.5rem); box-shadow: 0 1rem 2rem #0007; }
+.items-leading  > .blog-item { width: 100%; }
+.items-leading  > .blog-item .item-image img { object-position: 50% 20%; }
+.blog-item  > .item-content  > .page-header a { color: #777 !important; }
+.blog-item  > .item-content  > .page-header a:hover { color: #222 !important; }
+.blog-item  > .item-content  > .page-header h2 { font-size: 1.6rem !important; line-height: 1.1; }
+.blog-item  > .item-image { width: 100%; }
+.blog-item  > .item-image img { width: 100%; height: 20rem; object-fit: cover; border-radius: 0.75rem; border: 0.1rem solid #ccc; }
+</x>
+					Данный код вставляется в конце файла <c>template.css</c>, который вы можете найти по примерному пути на FTP сервере:
+					<a>/www/<i>(домен)</i>/templates/rostsayt-4/css</a>
+					Вы можете стилизовать его по своему усмотрению, это просто рабочий образец.`
+				},
 			}
 		},
 		['Работа с РП']: {
@@ -404,7 +491,7 @@
 				id: 'sheet_new',
 				icon: 'backup_table',
 				root: 'sheets',
-				path: 'sheets/create',
+				path: 'any/sheets/create',
 				data: [0,
 					['0.png', 'Перейдите по <a href="https://docs.google.com/spreadsheets/d/19EdaXblGisRUCPP8wW7zoaZi3lx3O65MjpDdIqkZszc/edit?pli=1&gid=1009400070#gid=1009400070"'+
 						'target="_blank">данной ссылке</a> чтобы открыть текущий шаблон РП'],
@@ -436,6 +523,52 @@
 			icon: 'info',
 			intro: 'Общая информация о различных ресурсах',
 			root: 'home',
+			['Подключение по FTP']: {
+				id: 'ftp_connection',
+				icon: 'cloud',
+				intro: 'Подключение к серверам по FTP с WinSCP',
+				text: `Скачайте и установите программу <c>WinSCP</c> по ссылке ниже:
+				https://sourceforge.net/projects/winscp/files/latest/download
+
+				Откройте программу и в следующих полях введите указанную информацию:
+				<b>File protocol</b>: <c>FTP</c> или <c>SFTP</c> протокол (обычно первый)
+				<b>Host name</b>: <c>FTP адрес</c> нужного сервера
+				<b>User name</b>: <c>Имя пользователя</c>
+				<b>Password</b>: <c>Пароль пользователя</c>
+				<img src='any/winscp/1.webp' alt>
+				После чего, нажмите <c>Login</c>.
+				<img src='any/winscp/2.webp' alt>
+				Отсюда, вы можете настроить интерфейс как вам удобно и пользоваться программой.
+				Для того, чтобы найти нужную вам информацию по FTP, прочитайте статью <c>Поиск по FTP</c> в этом же разделе.
+
+				Также, в настройках вы можете выбрать удобный для вас редактор текста:
+				<img src='any/winscp/3.webp' alt>`
+			},
+			['Поиск по FTP']: {
+				id: 'grep',
+				icon: 'document_search',
+				intro: 'Как искать информацию в файлах по FTP',
+				text: `
+				Для того, чтобы найти какую-либо информацию внутри файлов по FTP, вы можете создать файл <c>grep.php</c> в корневой папке сайта.
+				Внутри данного файла мы вставляем безопасный код:
+<x class="code">< ?
+$str_grep=<c>""</c>;
+$str_find=<c>""</c>;
+$grep=shell_exec("grep -rn --include=\\*<c>.php</c> '$str_grep' .");
+$find=shell_exec("find . -name $str_find");
+echo '< pre >--- grep: ---< br >';
+print_r(str_replace(array("< ", " >"), array("&lt;", "&gt;"), $grep));
+echo '--- find: ---< br >';
+print_r(str_replace(array("< ", " >"), array("&lt;", "&gt;"), $find));
+echo '< /pre >';
+? >
+</x>
+				Внутри помеченных ковычек (<c>""</c>) вписываем то, что нам нужно найти.
+				Для <c>str_grep</c> мы вписываем то, что нужно найти <c>внутри .php файлов</c> (расширение файла можно поменять);
+				Для <c>str_find</c> мы вписываем <c>название файла</c>, которого нужно найти.
+
+				Далее, чтобы активировать скрипт, мы просто вставляем <c>/grep.php</c> в конце адреса нужного сайта в браузере.`
+			},
 			['Структура статей']: {
 				id: 'article_struct',
 				icon: 'text_compare',
@@ -490,12 +623,14 @@
 				В таком случае мы удаляем его и делаем H2 заголовком следующий заголовок.</li>
 				</ol>`
 			},
+			/*
 			['...']: {
 				id: '...',
 				icon: 'more',
 				intro: '...',
 				text: `...`,
 			},
+			*/
 		}
 	}}
 
@@ -505,7 +640,7 @@
 				let m = v[0].replace(/\.$/g, '');
 				str = str.replaceAll(m, `<a href='${m}' target='_blank'>${m}</a>`);
 			});
-			return str.replaceAll('< ', '&lt;').replaceAll(' >', '&gt;').replaceAll(/\n/g, '<br>');
+			return str.replaceAll('&', '&amp;').replaceAll('< ', '&lt;').replaceAll(' >', '&gt;').replaceAll(/\n/g, '<br>');
 		}
 
 		let dbload = function(data) {
@@ -539,6 +674,9 @@
 						else {
 							mk(em, `<div class='tl article'>${cleanHTML(v.text)}</div>`);
 							addclass(em, 'fulltext');
+							loop(tags(em, 'img'), (i,v)=>{
+								v.onclick = ()=>{ setclass(v, 'fillx'); }
+							});
 						}
 					}
 					dbload(v);
