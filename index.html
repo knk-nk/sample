@@ -675,6 +675,7 @@ echo '< /pre >';
 							mk(em, `<div class='tl article'>${cleanHTML(v.text)}</div>`);
 							addclass(em, 'fulltext');
 							loop(tags(em, 'img'), (i,v)=>{
+								addclass(v, 'nosel');
 								v.onclick = ()=>{ setclass(v, 'fillx'); }
 							});
 						}
