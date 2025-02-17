@@ -15,13 +15,13 @@ $ext=$_POST["ext"];
 echo '<pre>';
 if ($str_grep && ($str_grep != "")) {
 	$grep=shell_exec("grep -rn --include=\*$ext '$str_grep' .");
-	echo 'grep:<br><br>';
+	echo 'Найденный код:<br><br>';
 	print_r(str_replace(array("<", ">"), array("&lt;", "&gt;"), $grep));
 	echo '<br><hr><br>';
 }
 if ($str_find && ($str_find != "")) {
 	$find=shell_exec("find . -name $str_find");
-	echo 'find:<br><br>';
+	echo 'Найденные файлы:<br><br>';
 	print_r(str_replace(array("<", ">"), array("&lt;", "&gt;"), $find));
 }
 echo '</pre>';
