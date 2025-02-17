@@ -32,9 +32,10 @@
 	.fulltext li { padding-top: 0.75rem; }
 	.fulltext li::marker { color: var(--pink); font-weight: 800; }
 	.fulltext ol > br, .fulltext ul > br { display: none; }
-	.fulltext p:has(> img) { height: 50vmin; display: inline-block; margin: 1rem 0 0 0; transition: 0.3s; }
+	.fulltext p:has(> img) { display: inline-block; margin: 1rem 0 0 0; transition: 0.3s; }
+	.fulltext p:has(> img).open { height: 50vmin; }
 	.fulltext p:has(> img):hover img { transform: translateX(1rem); }
-	.fulltext img { max-height: 100%; max-width: 80vmin; display: block; cursor: pointer; transition: 0.3s; }
+	.fulltext img { max-height: 50vmin; max-width: 80vmin; display: block; cursor: pointer; transition: 0.3s; }
 	.fulltext img.fillx { z-index: 2; max-height: unset; max-width: unset; background-color: var(--windowBg); transform: none !important; }
 	.items { margin: auto auto 1rem auto !important; padding: 1rem; gap: 1rem 1rem; min-width: 12rem; max-width: calc(75vw + 20vmin); max-height: 27rem; background: var(--windowFg);  }
 	.items, .items > div { margin: 0px; border-radius: var(--corners); box-shadow: 0 0 2.5rem #0003; transition: 0.3s; }
@@ -550,34 +551,14 @@ window.addEventListener("load", ()= >{
 				id: 'grep',
 				icon: 'document_search',
 				intro: 'Как искать информацию в файлах по FTP',
-				text: `Для того, чтобы найти какую-либо информацию внутри файлов по FTP, вы можете создать файл <c>grep.php</c> в корневой папке сайта.
-				Внутри данного файла мы вставляем безопасный код:
-<x class="code">< ?
-$str_grep=<c>""</c>;
-$str_find=<c>""</c>;
-$ext="<c>.php</c>";
-
-echo '< pre >';
-if ($str_grep != "") {
-	$grep=shell_exec("grep -rn --include=\\*$ext '$str_grep' .");
-	echo '--- grep: ---< br >';
-	print_r(str_replace(array("< ", " >"), array("&lt;", "&gt;"), $grep));
-	echo '< br >';
-}
-if ($str_find != "") {
-	$find=shell_exec("find . -name $str_find");
-	echo '--- find: ---< br >';
-	print_r(str_replace(array("< ", " >"), array("&lt;", "&gt;"), $find));
-}
-echo '< /pre >';
-? >
-</x>
-				Внутри помеченных ковычек (<c>""</c>) вписываем то, что нам нужно найти.
-				<ul>
-				<li>Для <c>str_grep</c> вписываем то, что нужно найти <c>внутри .php файлов</c> (расширение файла можно поменять);</li>
-				<li>Для <c>str_find</c> вписываем <c>название файла</c>, которого нужно найти.</li>
-				</ul>
-				Далее, чтобы активировать скрипт, просто вставляем <c>/grep.php</c> в конце адреса нужного сайта в браузере.`
+				text: `Для того, чтобы найти какую-либо информацию внутри файлов и папок по FTP, перейдите по ссылке:
+				https://raw.githubusercontent.com/knk-nk/sample/refs/heads/test/grep.php
+				И скачайте файл как <c>grep.php</c>:
+				<p><img src='any/grep/1.webp' alt></p>
+				После чего, просто положите файл в корневую папку сайта.
+				Чтобы активировать скрипт, вставьте <c>/grep.php</c> в конце адреса нужного сайта в браузере.
+				Выглядеть он должен так:
+				<p><img src='any/grep/2.webp' alt></p>`
 			},
 			['Структура статей']: {
 				id: 'article_struct',
@@ -685,7 +666,10 @@ echo '< /pre >';
 							mk(em, `<div class='tl article'>${cleanHTML(v.text)}</div>`);
 							addclass(em, 'fulltext');
 							loop(tags(em, 'img'), (i,v)=>{
-								v.onclick = ()=>{ setclass(v, 'fillx'); }
+								v.onclick = ()=>{
+									setclass(v, 'fillx');
+									setclass(v.root(), 'open');
+								}
 							});
 						}
 					}
