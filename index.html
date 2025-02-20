@@ -503,13 +503,18 @@ window.addEventListener("load", ()= >{
 <x class='code'>RewriteCond %{HTTP_HOST} ^www\.(.*)$
 RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
 
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
+<c>RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
 RewriteRule ^index\.php$ / [R=301,L]
-RewriteRule ^index.php/(.*)$ /$1 [R=permanent,L]
+RewriteRule ^index.php/(.*)$ /$1 [R=permanent,L]</c>
 
+RewriteRule ^home[/]?$ /? [L,R=301]
 RewriteRule ^index\.htm[l]?$ / [R=301,L]
-RewriteRule ^home$ /? [L,R=301]
+<b>RewriteRule ^index\.php$ / [R=301,L]</b>
 </x>
+				Из образца выше, <b>красный</b> код нужно <b>убрать</b>.
+				В том случае, если <c>зеленый</c> код не работает - наоборот, <c>убрать его</c>, а <b>красный оставить</b>.
+				Если оба не работают - убрать их.
+
 				Сохраните файл и проверьте следующие ссылки на сайте:
 				<ul>
 				<li>/index.php</li>
