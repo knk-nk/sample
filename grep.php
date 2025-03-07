@@ -1,16 +1,15 @@
 <form action="<?=$PHP_SELF;?>" method="POST" style="font-family: Verdana">
-	<br><input type="text" name="grep" placeholder="Поиск текста в коде"><br>
-	<input type="text" name="ext" placeholder="Расширение файла" value=".php" pattern="[.][A-Za-z0-9]*"><br><br>
-	<input type="text" name="find" placeholder="Поиск по названию файла"><br><br>
+	<br><input type="text" name="grep" placeholder="Поиск текста в коде" pattern="[a-zA-Z0-9 ]+"><br>
+	<input type="text" name="ext" placeholder="Расширение файла" value=".php" pattern="[a-zA-Z0-9.]+"><br><br>
+	<input type="text" name="find" placeholder="Поиск по названию файла" pattern="[a-zA-Z0-9 _-.]+"><br><br>
 	<input type="submit" value="Найти">
 </form><hr>
 
 <?
 if (!empty($_POST)) {
-$ptrn=array('\\', '\r', '\n');
-$str_grep=str_replace($ptrn, '', $_POST["grep"]);
-$str_find=str_replace($ptrn, '', $_POST["find"]);
-$ext=$_POST["ext"];
+$str_grep=preg_filter('/[^a-zA-Z0-9 ]*/', '', $_POST["grep"]);
+$str_find=preg_filter('/[^a-zA-Z0-9 _-.]*/', '', $_POST["find"]);
+$ext=preg_filter('/[^a-zA-Z0-9.]*/', '', $_POST["ext"]);
 
 echo '<pre>';
 if ($str_grep && ($str_grep != "")) {
