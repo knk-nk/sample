@@ -1,7 +1,7 @@
-<form action="<?=$PHP_SELF;?>" method="POST" style="font-family: Verdana">
-    <br><input type="text" name="grep" placeholder="Code text search" pattern="[^&;\n\\]+"><br>
-    <input type="text" name="ext" placeholder="File extension" value=".php" pattern="[a-zA-Z0-9.*]+"><br><br>
-    <input type="text" name="find" placeholder="Filename search" pattern="[a-zA-Z0-9 ._\-]+"><br><br>
+<form action="<?=$PHP_SELF;?>" method="POST" style="font-family: Roboto">
+    <br><input type="text" name="grep" placeholder="Поиск текста в коде" pattern="[^&;\n\\]+"><br>
+    <input type="text" name="ext" placeholder="Расширение файла" value=".php" pattern="[a-zA-Z0-9.*]+"><br><br>
+    <input type="text" name="find" placeholder="Поиск по названию файла" pattern="[a-zA-Z0-9 ._\-]+"><br><br>
     <input type="submit" value="Find">
 </form><hr>
 
@@ -14,7 +14,7 @@ $ext=preg_filter('/[^a-zA-Z0-9.*]*/', '', $_POST["ext"]);
 echo '<pre>';
 if ($str_grep && ($str_grep != "")) {
     $grep=shell_exec("grep -rn --include=\*$ext '$str_grep' .");
-    echo 'Code found:<br><br>';
+    echo 'Найденный код:<br><br>';
     print_r(
 		str_replace(array("<", ">"), array("<", ">"),
 			preg_filter('/[\n]?[.]\/send_mail.+[\n]?/', '', $grep)
@@ -24,7 +24,7 @@ if ($str_grep && ($str_grep != "")) {
 }
 if ($str_find && ($str_find != "")) {
     $find=shell_exec("find . -name $str_find");
-    echo 'Files found:<br><br>';
+    echo 'Найденные файлы:<br><br>';
     print_r(str_replace(array("<", ">"), array("<", ">"), $find));
 }
 echo '</pre>';
